@@ -3,7 +3,7 @@ from torch import nn
 import torch.nn.functional as F
 from torch import optim
 from unet import *
-import metrics_sauc
+import metrics
 import losses
 import os
 import numpy as np
@@ -15,7 +15,7 @@ import albumentations as A
 import time
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset as BaseDataset
-from deeplab2.deeplabv3 import DeepLabV3Plus
+from deeplabV3plus.deeplabv3 import DeepLabV3Plus
 from deeplab2 import encoders
 from camvid_unet import *
 
@@ -204,8 +204,8 @@ if __name__ == "__main__":
     model.to(device);
     
     #Metrics:
-    mIoU = metrics_sauc.Jaccard()
-    accuracy = metrics_sauc.OAAcc()
+    mIoU = metrics.Jaccard()
+    accuracy = metrics.OAAcc()
 
     #Define optimizer
     lr = 1e-4 / 5
